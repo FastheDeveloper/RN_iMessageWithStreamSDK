@@ -1,6 +1,7 @@
 import { Alert } from "react-native"
 import { API_URL } from "../config"
 import axios from 'axios'
+import { User } from "../context/auth"
 export const login = async (username: string):Promise<User | null> => {
     const res=await fetch(`${API_URL}/login`,{
         method:'POST',
@@ -19,4 +20,9 @@ export const login = async (username: string):Promise<User | null> => {
                  
             }
  
+}
+
+export const getUsers=async ():Promise<User[]>=>{
+    const res=await fetch(`${API_URL}/users`)
+    return res.json()
 }
